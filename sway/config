@@ -502,7 +502,7 @@ exec --no-startup-id /usr/lib/xdg-desktop-portal -r
 exec_always --no-startup-id /usr/lib/xdg-desktop-portal-wlr -r &
 exec_always --no-startup-id ~/.config/sway/scripts/mako-launch.sh
 exec_always sh -c 'pkill -x wl-paste; wl-paste --watch cliphist store'
-
+#-----
 # ============================================
 # MISC
 # ============================================
@@ -511,7 +511,8 @@ mouse_warping none
 #-----------------------------
 #Connecting to the WARP toggle scripts 
 bindcode $mod+Shift+34 exec foot -e ~/scripts/warp-toggle.sh
-
 #---------
 #Trying some featrues 
-bindcode $mod+Shift+36 exec sh -c 'current=$(swaymsg -t get_workspaces | jq -r ".[] | select(.focused==true).num"); next=$((current + 1)); swaymsg move container to workspace number $next' ## holy moly jq is 10/10
+bindcode $mod+Shift+36 exec sh -c 'current=$(swaymsg -t get_workspaces | jq -r ".[] | select(.focused==true).num"); next=$((current + 1)); swaymsg move container to workspace number $next' ## holy moly jq is 10/10 
+
+exec_always --no-startup-id sh -c 'setsid /home/elbulbol/.config/sway/scripts/launch-wrapper.sh >>/home/elbulbol/.cache/launch-wrapper.log 2>&1 &'

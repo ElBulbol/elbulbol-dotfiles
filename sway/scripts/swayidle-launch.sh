@@ -1,13 +1,10 @@
 #!/bin/sh
 # Safe launcher for swayidle + swaylock
 LOG="$HOME/.config/sway/sway-errors.log"
-
 #!/bin/sh
 LOG="$HOME/.config/sway/sway-errors.log"
-
 # Redirect script errors to the sway errors log
 exec 2>>"$LOG"
-
 # Kill any existing swayidle instances to avoid duplicates
 if command -v pkill >/dev/null 2>&1; then
   pkill -x swayidle >/dev/null 2>&1 || true
@@ -19,7 +16,6 @@ else
     done
   fi
 fi
-
 # Start swayidle only if available
 if command -v swayidle >/dev/null 2>&1; then
   # Use the user's wallpaper with blur/vignette for the lock screen
@@ -35,7 +31,5 @@ if command -v swayidle >/dev/null 2>&1; then
 else
   echo "$(date) - swayidle not found; skipping" >> "$LOG"
 fi
-
 exit 0
-
 exit 0
